@@ -1,0 +1,87 @@
+/* 
+Root
+fonts
+*/
+
+:root {
+    --mainGradient: linear-gradient(92deg, #E74747 17.73%, #700000 93.54%);
+    --mainColor: #E74747;
+    --mainDarkColor: #700000;
+}
+
+@font-face {
+    font-family: 'Grahpik';
+    src: url(fonts/Graphik-Light.woff) format('woff'),
+    url(fonts/Graphik-Light.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Grahpik';
+    font-weight: 600;
+    src: url(fonts/Graphik-Semibold.woff) format('woff'),
+    url(fonts/Graphik-Semibold.woff2) format('woff2');
+}
+
+body {
+    font-family: 'Graphik', Helvetica, sans-serif;
+    /* background-color: #000 !important; */
+    /* color: #fff; */
+    font-weight: 300;
+}
+
+
+/* Btns */
+
+a.btn-primary {
+    margin-top: 40px;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 6px;
+}
+
+
+/* Fonts */
+
+.f0, h1.f0, h2.f0, h3.f0, h4.f0, h5.f0, h6.f0 {
+    font-size: 5.8rem;
+    line-height: 1;
+}
+
+.page-starter h1.f0 {
+    font-size: 5.8vw;
+}
+
+/* Colors */
+
+.main-color-bg {
+    background: var(--mainColor);
+}
+
+.main-color {
+    color: var(--mainColor);
+}
+
+.main-dark-color {
+    color: var(--mainDarkColor);
+}
+
+.main-dark-color-bg {
+    background: var(--mainDarkColor);
+}
+
+.main-gradient-bg {
+    background: var(--mainGradient);
+}
+
+.secondary-gradient-bg {
+    background: var(--secondaryGradient);
+}
+
+.gradient-text {
+    background-image: var(--mainGradient);
+    -webkit-background-clip: text; /* For older versions of webkit-based browsers */
+    background-clip: text; /* Apply the text as the clipping mask */
+    color: transparent; /* Make the text transparent */
+  }

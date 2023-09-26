@@ -25,12 +25,38 @@
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'clearcomp' ); ?></a>
-	<header id="masthead" class="site-header">
-		
+
+	<?php get_template_part('template-parts/notices'); ?>
+
+	<header id="masthead" class="site-header flex jic py-5 px-20 fixed top-[48px] left-0 w-full z-50 bg-white">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="flex items-center w-40">
+			<?php get_template_part('template-parts/assets/logo'); ?>
+		</a>
+
+
+		<div class="mobile">
+			<p class="black">Menu</p>
+		</div>
+
+		<div class="header-aob flex items-center desktop">
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'header',
+					'menu_id'        => 'header',
+					'container' => 'ul',
+					'menu_class' => 'header-nav w-max ml-auto mr-0 flex jic list-none black :last-text-red',
+				) );
+			?>
+		</div>
+
+		<a class="text-[var(--mainColor)] border-[1px] border-[var(--mainColor)] hover:bg-[var(--mainColor)] hover:text-white smooth-t py-[10px] px-[35px] rounded-md font-medium" href="#contact">Contact Us</a>
 	</header><!-- #masthead -->
 
+	<?php get_template_part('template-parts/header-dropdown'); ?>
 
-	<!-- <div class="cursor desktop dn"></div> -->
+
+
+	<div class="cursor desktop dn"></div>
 	<div class="flex pre-load">
 		<div class="bg-main-dark-color"></div>
 		<div class="bg-main-dark-color"></div>

@@ -51,8 +51,8 @@
   p {
     font-family: var(--messina);
     font-weight: 300;
-    font-weight: normal;
-    font-size: 1rem;
+    /* font-weight: normal; */
+    font-size: 18px;
     line-height: 1.68;
   }
   
@@ -174,7 +174,9 @@
   
   
   .header-nav li a {
-    color: var(--secondaryColor)
+    color: black;
+    transition: var(--smooth);
+    font-weight: 500;
   }
   
   .header-nav li:hover a {
@@ -182,7 +184,11 @@
   }
   
   .header-nav a::after {
-    background: var(--mainColor) !important
+    /* background: var(--mainColor) !important */
+  }
+
+  .header-nav li:hover {
+    background-color: var(--mainColorLight);
   }
   
   .header-nav li.main-cta { 
@@ -196,6 +202,11 @@
   
   .header-nav li.main-cta a:after {
     content: unset;
+  }
+
+  .header-nav li a {
+    padding: 8px;
+    border-radius: 4px;
   }
   
   .header-nav li.main-cta:hover a {
@@ -242,9 +253,9 @@
     transform: translate(-50%, -50%);
     width: 35px;
     height: 35px;
-    background-color: var(--mainDarkColor);
+    background-color: var(--mainColor);
     
-    mix-blend-mode: difference;
+    /* mix-blend-mode: difference; */
     z-index: 999999999;
     border-radius: 50%;
     transition: width 0.2s ease, height 0.2s ease;
@@ -264,8 +275,10 @@
     width: 65px;
     height: 65px;
     opacity: 0.8;
-    background-color: var(--mainColor);
+    border: 1px solid var(--mainDarkColor);
+    background-color: unset;
     transform: translate(-50%, -50%);
+    cursor: pointer !important;
   }
   
   .cursor.is-shop {
@@ -298,7 +311,7 @@
   
   a,
   button.single_add_to_cart_button {
-    cursor: none !important;
+    /* cursor: none !important; */
   }
   
   .overflow-scroll::-webkit-scrollbar {
@@ -493,8 +506,8 @@
   }
   
   .container {
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: 2vw;
+    padding-right: 2vw;
   }
 
 
@@ -692,7 +705,7 @@
   }
   
   .has-after,
-  .header-nav li:not(:last-child) a,
+  .header-nav li a,
   .footer-nav-inner a,
   .details-header > p,
   .side-menu a,
@@ -703,18 +716,19 @@
     display: inline-flex;
     width: max-content;
     height: max-content;
-    padding-bottom: 4px;
+    /* padding-bottom: 4px; */
     line-height: 1;
-    font-family: var(--suisse);
-    color: #fff;
+    font-size: 16px;
+    /* font-family: var(--suisse); */
+    /* color: #fff; */
   }
-  
+/*   
   .header-nav a {
     font-size: 0.875em;
-  }
+  } */
   
   .has-after::after,
-  .header-nav li:not(:last-child) a::after,
+  .header-nav li a::after,
   .footer-nav-inner a::after,
   .details-header > p::after,
   .side-menu a::after,
@@ -786,7 +800,7 @@
   }
   
   .has-after:hover::after,
-  .header-nav li:not(:last-child) a:hover::after,
+  .header-nav li a:hover::after,
   .footer-nav-inner a:hover::after,
   .details-header > p.selected::after,
   .shop-artist:hover .has-after::after,
@@ -938,7 +952,7 @@
 
 .faq-item {
 	position: relative;
-	border-radius: 8px;
+	/* border-radius: 8px; */
 	max-height: min-content;
 	max-height: -moz-min-content;
 	max-height: intrinsic;
@@ -964,7 +978,7 @@
 
 .faq-item p:last-child,
 .faq-item p:nth-child(2) {
-	color: #fff;
+	/* color: #fff; */
 	/* margin-top: 10px; */
 }
 
@@ -1459,7 +1473,6 @@
   }
   
   
-  
   /* Start Contact */
   
   .contact-form-container {
@@ -1576,7 +1589,7 @@
   
   
   .contact-pop-container input, .contact-pop-container textarea, div.wpforms-container-full .wpforms-form textarea.wpforms-field-medium {
-    background-color: rgba(255, 255, 255, 0.50) !important;
+    background-color: rgba(189, 189, 189, 0.65) !important;
     border-radius: 6px !important;
     border: 0px !important;
     transition: var(--smooth);

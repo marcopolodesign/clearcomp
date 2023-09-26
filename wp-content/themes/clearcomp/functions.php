@@ -49,7 +49,8 @@ function clearcomp_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'clearcomp' ),
+			'header' => esc_html__( 'Header', 'clearcomp' ),
+			'footer' => esc_html__( 'Footer Menu', 'clearcomp' ),
 		)
 	);
 
@@ -183,3 +184,17 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+
+function move_acf_metabox_to_top() {
+    global $post;
+        // Add custom CSS to position the ACF meta box at the top
+        echo '<style>
+            .acf-postbox {
+                order: 0 !important;
+            }
+        </style>';
+    
+}
+
+add_action('acf/input/admin_head', 'move_acf_metabox_to_top');

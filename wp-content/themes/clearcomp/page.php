@@ -1,38 +1,22 @@
-<?php
-/**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Clear_Comp
- */
+<?php get_header(); ?>
 
-get_header();
-?>
+<div data-barba="container" class="page <?php the_title();?>" data-barba-namespace="<?php the_title();?>" data-header-color="dark">
+   
+    <?php get_template_part('template-parts/reusable');  
+        if (get_field('main_faq') && !is_page('faq')) :
+        get_template_part('template-parts/reusable/faqs-featured');
+    endif; ?>
 
-	<main id="primary" class="site-main">
+    <?php if (is_page(array('285', '300', '316'))) : 
+            get_template_part('template-parts/solutions-ending'); 
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+        elseif (is_page(array('172', '322', '328'))):
+             get_template_part('template-parts/role-ending'); 
+    endif; ?>
 
-			get_template_part( 'template-parts/content', 'page' );
+</div> <!-- End Barba Container -->
+<?php get_footer(); ?>
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
 
-		endwhile; // End of the loop.
-		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
-get_footer();
+<!-- Title & CTa -->
+<!-- Video -->

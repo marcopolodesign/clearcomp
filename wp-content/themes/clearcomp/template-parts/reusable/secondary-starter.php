@@ -12,7 +12,7 @@ endif;
 
 
 <?php if (get_sub_field('layout') == 'side') : ?>
-<div class="home-starter min-h-[60vh] flex jic container mt-[160px] pt-20">
+<div class="home-starter min-h-[60vh] flex column-mobile jic container mt-5 sm:mt-[160px] pt-20">
     <div class="w-2/5 flex flex-col">       
         <p class=' text-gray-800 mb-5 text-2xl'><?php the_sub_field('sub_parragraph');?></p>
         <h1 class="text-6xl gradient-text font-normal mb-3"><?php the_sub_field('main_title');?></h1>
@@ -33,7 +33,7 @@ endif;
 // elseif (get_sub_field('layout') == 'half') :
  else :  ?>
 
-<div class="flex container justify-between items-start mt-[160px] pt-20">
+<div class="flex column-mobile-reverse container justify-between items-start mt-[160px] pt-20">
     <div class="w-1/5">
         <?php if ($landingIcon): ?>
          <img src="<?php echo esc_url($landingIcon['url']); ?>" alt="<?php echo esc_attr($landingIcon['alt']); ?>" />

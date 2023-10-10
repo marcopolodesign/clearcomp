@@ -3,10 +3,9 @@ let preLoad = document.querySelectorAll('.pre-load > div:not(:last-child)');
 let header = document.querySelector('header')
 let preloaderCaption = document.querySelector('.pre-load div > span');
 let loadingCaption = document.querySelector('.pre-load div p');
-let menuTl;
-let menu;
 
 const runScripts = () => {
+  pageName = document.querySelector('[data-barba=container]');
   setTimeout(() => {
     moreAnchors();
   }, 3000);
@@ -212,52 +211,31 @@ const showInfoOnHover = (target, trigger, targetContainer) => {
     i.addEventListener('mouseover', (e)=> {
       let spanIndex = index;
       console.log (index, target, target[index])
-      showAboutInfo(spanIndex, target);
 
-    
+      if (trigger === icebergParts) {
+      document.querySelector('.iceberg-container').classList.add('hovered')
+      }
+      showAboutInfo(spanIndex, target);    
     })
   })
 
   targetContainer.addEventListener('mouseout', (e)=> {
+
+      if (trigger === icebergParts) {
+        document.querySelector('.iceberg-container').classList.remove('hovered')
+      }
     target.forEach(div => {
       div.classList.add('opacity-0', 'translate-y-10');
     })
   })
 }
 
-const divHolder = document.querySelector('.about-cc-text')
-const divs = document.querySelectorAll('.about-content');
-const spans = document.querySelectorAll('.about-cc-text span.underline');
 
 
 
 
-// Iceberg hover effect
-const iceberg = document.querySelector('.iceberg-svg');
-const icebergOverlay = document.querySelectorAll('.iceberg-overlay');
-const icebergParts = document.querySelectorAll('.iceberg-svg path');
-
-  
-const showMenuDropwdown = () => {
-  const holder = document.querySelector('.menu-dropdown-container');
-  const trigger = document.querySelector('a[href="#solutions-dropdown"]');
-
-  trigger.addEventListener('click', (e)=> {
-
-    const showDropdown = gsap.timeline({
-      defaults: {
-        ease: "power4.inOut",
-        duration: 0.8
-    }});
 
 
-    holder.classList.toggle('opacity-0');
-    holder.classList.toggle('-translate-y-full');
-    console.log('click')
-  })
-}
-
-showMenuDropwdown();
 
 const steps = () => {
   const steps = document.querySelectorAll('.step-inner');
@@ -279,9 +257,9 @@ const steps = () => {
   })
 }
 
-
-
 runScripts();
+
+let icebergParts;
 
 barba.init({
     timeout: 3000,
@@ -322,16 +300,14 @@ barba.init({
             }) 
             // Animate Pre Load
             loadEnter
-            .call (()=> {
-                // loadingCaption.innerHTML = originalCaption;
-            })
+           
             .set(loadingCaption, {opacity: 0})
             .set(preloaderCaption, {y: "120%"})
             .set(preLoad,{ y: "110%"})
             .to(preLoad,{ y: "0%", stagger: 0.05})
             .to(preloaderCaption, {y: "0%"},0.2)
             .to(loadingCaption, {opacity: 1}, 0.2)
-  
+            
           });
         },
         afterEnter({ current, next, trigger }) {
@@ -357,10 +333,13 @@ barba.init({
             loadLeave
             .to(loadingCaption, {opacity: 0})
             .to(preloaderCaption, {y: "-130%"},0.4)    
-            .call (()=> {
-              // loadingCaption.innerHTML = "Loaded!"
-          })
             .to(preLoad,{ y: "-110%", stagger: 0.05}, 0.4)
+            .call (()=> {
+              if (pageName.getAttribute('data-barba-namespace') == 'home') {
+                console.log('animating from regular')
+                animateLanding();
+              }
+            })
           });
         },
       },
@@ -369,10 +348,22 @@ barba.init({
     views: [ {
       namespace: 'home',
       afterEnter() {
+        
+        const divHolder = document.querySelector('.about-cc-text')
+        const divs = document.querySelectorAll('.about-content');
+        const spans = document.querySelectorAll('.about-cc-text span.underline');
+
+        // Iceberg hover effect
+        const iceberg = document.querySelector('.iceberg-svg');
+        const icebergOverlay = document.querySelectorAll('.iceberg-overlay');
+        icebergParts = document.querySelectorAll('.iceberg-svg path');
+
         showInfoOnHover(divs, spans, divHolder);
         showInfoOnHover(icebergOverlay, icebergParts, iceberg); 
         animateIntegrations();
         faqQuestions();
+        // animateLanding();
+        // console.log('animating from view')
       }
     }, {
     namespace: 'faq', 
@@ -407,7 +398,7 @@ barba.init({
    },
     ],
     debug: true,
-  });
+});
   
 
 const contact = () => {
@@ -477,12 +468,13 @@ const animatePreLoader = () => {
     }
 
   preloadTl
-  .call (()=> {
-      // loadingCaption.innerHTML = "Loaded!"
-  })
   .to(loadingCaption, {opacity: 0})
   .to(preloaderCaption, {y: t},0.4)
   .to(preLoad,{ y: "-110%", stagger: 0.05}, 0.4)
+  .call (()=> {
+    animateLanding();
+    console.log('animating from animatePreLoader fn')
+  })
 
 
   preloadTl.paused(true);
@@ -549,14 +541,73 @@ animate()
     
 }
 
-const closeMenuDropdown = () => {
-  let dropdown = document.querySelector('.menu-dropdown-container')
-  const isOpen = !dropdown.classList.contains('.-translate-y-full');
 
-  if (isOpen) {
-      dropdown.classList.add('-translate-y-full');
+
+const animateNumbers = () => {
+  const animateNumberEls = document.querySelectorAll('.animate-number');
+  const duration = 2; // in seconds
+
+  const animateNumber = (el) => {
+    const endValue = parseInt(el.innerHTML);
+    const startValue = 0;
+    const increment = endValue / (duration * 60); // 60 frames per second
+
+    let currentValue = startValue;
+    const interval = setInterval(() => {
+      currentValue += increment;
+      el.innerHTML = Math.floor(currentValue);
+
+      if (currentValue >= endValue) {
+        clearInterval(interval);
+        el.innerHTML = endValue;
+      }
+    }, 1000 / 60);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateNumber(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  animateNumberEls.forEach((el) => {
+    observer.observe(el);
+  });
+};
+
+animateNumbers();
+
+
+const dropHolder = document.querySelector('.menu-dropdown-container');
+const dropTrigger = document.querySelectorAll('a[href="#solutions-dropdown"]')[1];
+let isDropOpen = !dropHolder.classList.contains('-translate-y-full');
+
+const closeMenuDropdown = () => {
+
+  if (isDropOpen) {
+      dropHolder.classList.add('-translate-y-full', 'opacity-0');
+      isDropOpen = false;
   }
 }
+
+
+const showMenuDropwdown = () => {
+    dropTrigger.addEventListener('click', (e)=> {
+      console.log('clik')
+    if (!isDropOpen) {
+      dropHolder.classList.remove('opacity-0', '-translate-y-full');
+      isDropOpen = true;
+    } else  {
+      dropHolder.classList.add('opacity-0', '-translate-y-full');
+      isDropOpen = false;
+    }
+  })
+}
+
+showMenuDropwdown();
 
 
 const startYear = 2023;
@@ -603,3 +654,113 @@ function checkScrollPosition() {
 
 // Add a scroll event listener to trigger the animation
 window.addEventListener('scroll', checkScrollPosition);
+
+
+const animateLanding = () => {
+let holder = document.querySelectorAll('.childs-animate');
+
+  holder.forEach(h => {
+    let children = Array.prototype.slice.call(h.children)
+       console.log(children);
+      let animateTL = gsap.timeline({
+        defaults: {
+          ease: "power4.inOut",
+          duration: 0.7,
+          // delay: 0.5
+        }
+      }) 
+      animateTL
+      .set(children, {opacity: 0, y: 100})
+      .to(children, {opacity: 1, y: 0,  stagger: 0.05 })
+
+  })
+}
+
+const menuScroll = ()=> {
+  let header = document.querySelector('header');
+  let prevScroll = 0;
+  document.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll < 100) {
+      header.classList.remove('scrolled');
+    } else if (currentScroll > 100 && prevScroll < currentScroll) {
+      header.classList.add('scrolled');
+    } else if (prevScroll - 15 > currentScroll) {
+      // header.classList.remove('scrolled');
+    }
+
+    prevScroll = currentScroll;
+  });
+}
+
+menuScroll();
+
+
+let menuTl;
+let menu;
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+
+  menu = document.querySelector('.menu-container')
+  let menuContent = document.querySelector('#side-menu');
+  let menuHeader = document.querySelectorAll('.menu-header > *');
+  let linkContainer = document.querySelectorAll('ul.menu-nav > li')
+  let menuLinks = document.querySelectorAll('ul.menu-nav > li > a')
+  let menuBg = menu.querySelector('.absolute-cover.bg-main-color')
+
+  let delay = 8;
+  let duration = .4
+  let transition =  "power4.inOut"
+
+
+  menuTL = gsap.timeline({
+    paused: true, 
+    defaults: {
+      ease: "power4.inOut",
+      duration: 0.4, 
+      delay: .4
+    },
+  });
+  menuTL
+  .to (menuBg, {scale: 1, force3D: false, })
+  .to(menuHeader, {y: 0, stagger: 0.05}, .2)
+  .to(menuLinks, {y: 0, stagger: 0.05}, .2)
+  .to(linkContainer, {y: 0, stagger: 0.05}, .2);
+
+
+  const openMenu = () => {
+    let trigger = document.querySelector('.menu-trigger');
+    trigger.addEventListener('click', ()=> {
+      console.log('trigger')
+      document.querySelector("header").classList.add('menu-open')
+
+      menu.classList.remove('opacity-0');
+      menu.classList.remove('pointer-events-none');
+
+      menuTL.play();
+
+    })
+  
+  }
+
+
+  const closeMenu = () => {
+    let trigger = document.querySelector('.close-menu');
+
+    trigger.addEventListener('click', ()=> {
+      document.querySelector("header").classList.remove('menu-open')
+
+      menuTL.reverse();
+      setTimeout(() => {
+        menu.classList.add('opacity-0');
+        menu.classList.add('pointer-events-none');
+      }, 1200);
+    
+    })
+  }
+
+  closeMenu();
+  openMenu();
+
+}

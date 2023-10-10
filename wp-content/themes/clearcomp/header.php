@@ -28,14 +28,13 @@
 
 	<?php get_template_part('template-parts/notices'); ?>
 
-	<header id="masthead" class="site-header flex jic py-5 px-20 fixed top-[48px] left-0 w-full z-50 bg-white">
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="flex items-center w-40">
+	<header id="masthead" class="site-header flex jic py-5 px-20 fixed top-[84px] md:top-[48px] left-0 w-full z-[9999] bg-white [.scrolled]:shadow-md">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="items-center w-32 sm:w-40 db">
 			<?php get_template_part('template-parts/assets/logo'); ?>
 		</a>
 
-
 		<div class="mobile">
-			<p class="black">Menu</p>
+			<?php get_template_part('template-parts/menu'); ?>
 		</div>
 
 		<div class="header-aob flex items-center desktop">
@@ -49,7 +48,7 @@
 			?>
 		</div>
 
-		<a class="text-[var(--mainColor)] border-[1px] border-[var(--mainColor)] hover:bg-[var(--mainColor)] hover:text-white smooth-t py-[10px] px-[35px] rounded-md font-medium" href="#contact">Contact Us</a>
+		<a class="text-[var(--mainColor)] border-[1px] border-[var(--mainColor)] hover:bg-[var(--mainColor)] hover:text-white smooth-t py-[10px] px-[35px] rounded-md font-medium desktop" href="#contact">Contact Us</a>
 	</header><!-- #masthead -->
 
 	<?php get_template_part('template-parts/header-dropdown'); ?>

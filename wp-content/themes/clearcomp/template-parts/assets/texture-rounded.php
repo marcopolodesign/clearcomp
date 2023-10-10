@@ -1,4 +1,4 @@
-<svg width="328" height="429" viewBox="0 0 328 429" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="rounded-texture" width="328" height="429" viewBox="0 0 328 429" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_641_2216)">
     <path d="M111.744 0.638667C167.173 2.90746 211.704 47.438 213.973 102.868" stroke="#2C2C2C" stroke-width="0.5" stroke-miterlimit="10"/>
     <path d="M213.973 111.766C211.704 167.195 167.173 211.726 111.744 213.995" stroke="#2C2C2C" stroke-width="0.5" stroke-miterlimit="10"/>

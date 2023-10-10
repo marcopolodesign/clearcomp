@@ -1,7 +1,7 @@
 <div class="home-starter min-h-[60vh] flex container-xs relative">
-    <div class="flex flex-col justify-center align-middle px-10 relative z-10">
+    <div class="flex flex-col justify-center align-middle px-10 relative z-10 childs-animate">
         <p class=' text-gray-600 text-center mb-5 text-2xl'><?php the_sub_field('sub_parragraph');?></p>
-        <h1 class=" text-8xl text-center gradient-text font-light"><?php the_sub_field('main_title');?></h1>
+        <h1 class=" text-5xl md:text-7xl xl:text-8xl text-center gradient-text font-light"><?php the_sub_field('main_title');?></h1>
         <?php 
             $link = get_sub_field('call_to_action');
             if( $link ): 

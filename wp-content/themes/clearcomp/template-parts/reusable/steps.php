@@ -1,4 +1,4 @@
-<div class="container steps-container  my-<?php the_sub_field('margin');?> ">
+<div class="container desktop steps-container  my-<?php the_sub_field('margin');?> ">
     <div class="flex jic pb-3">
         <h4 class="text-black uppercase font-semibold"><?php the_sub_field('section_title');?></h4>
         <!-- <p>Tip: Hover over the iceberg to learn more</p> -->
@@ -16,10 +16,10 @@
             endif;
             $row_index = get_row_index();
         ?>
-            <div class="flex flex-col justify-between px-10 step-inner bg-gray-100 border-r-black border-r-[1px] smooth-t min-h-[550px]">
+            <div class="flex flex-col justify-between px-10 step-inner bg-gray-100 border-r-black border-r-[1px] smooth-t min-h-[350px]">
                 <div class="flex justify-between p-10 step-inner-content gap-10">
                     <div class="w-1/2 p-3 bg-white">
-                      <img src="<?php echo $image['url']; ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                      <img class="!h-[200px] !w-auto m-auto" src="<?php echo $image['url']; ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     </div>
                     <div class="w-1/2 flex flex-col justify-between">
                       <div class="text-xl"><?php the_sub_field('content');?></div>

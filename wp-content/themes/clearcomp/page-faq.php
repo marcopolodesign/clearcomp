@@ -1,22 +1,21 @@
 <?php get_header(); ?>
 
 <div data-barba="container" data-barba-namespace="faq" class="faq">
-  <section class="relative container pt-20">
-      <div class="flex justify-between items-end pt-16 pb-8 faq-title">
-        <h1 class='black f0'><?php the_title();?>s</h1>
+  <section class="relative container pt-20 flex column-mobile items-start">
+      <div class="flex flex-col pt-16 pb-8 faq-title w-1/4 sticky relative-mobile top-[120px] h-max border-r-2 border-r-black">
+        <h1 class='black f0 mb-2'><?php the_title();?>s</h1>
         <div class="tr tc page-description black black-text f3">
           <?php 
             if(have_posts() ) : while(have_posts() ) : the_post(); 
               the_content();
             endwhile; endif;
           ?>
+
+		  <a href="#/contact" class="btn btn-primary block bg-main-color hover:bg-[var(--mainDarkColor)] text-white w-max smooth-t">Contact Us</a>
         </div>
       </div>
 
-  </section>
-
-  <section class="pb5 container">
-      <div class="faq-container">
+	  <div class="faq-container w-3/5 pl-5 mr-0 ml-auto">
     	  <div class="faq-content">
 			<div class="faq-category-container relative">
 				<?php $color = get_field('color');
@@ -28,11 +27,12 @@
 							<p><?php the_sub_field('answer'); ?></p>
 						</div>  
 					</div>
-				<?php endif; endwhile; endif;?> 
+				<?php endif; endwhile; endif; ?>
 			</div>
        </div>
-	<!-- </div> -->
+
   </section>
+
 
 </div> 
 
@@ -156,7 +156,7 @@ margin-top: 40px !important;
 
 
     .faq-title {
-        border-bottom: 3px solid #000;
+        /* border-bottom: 3px solid #000; */
     }
 	
 	.header-title-center {

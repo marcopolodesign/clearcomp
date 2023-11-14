@@ -11,7 +11,3 @@
 
 </div> <!-- End Barba Container -->
 <?php get_footer(); ?>
-
-
-<!-- Title & CTa -->
-<!-- Video -->

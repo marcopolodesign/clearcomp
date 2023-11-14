@@ -15,7 +15,7 @@
     </div>
 
     <div class="absolute top-0 left-0 -z-0 video-container opacity-50">
-        <video autoplay loop muted>
+        <video autoplay loop muted playsinline>
             <source src="/wp-content/uploads/2023/09/cc-hero-low.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>

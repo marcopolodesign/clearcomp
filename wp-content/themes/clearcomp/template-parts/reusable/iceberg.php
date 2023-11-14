@@ -1,7 +1,7 @@
 <div class="container my-<?php the_sub_field('margin');?> relative group iceberg-container">
     <div class="flex jic pb-3">
         <h4 class="text-black uppercase font-semibold"><?php the_sub_field('section_title');?></h4>
-        <p>Tip: Hover over the iceberg to learn more</p>
+        <p><?php pll_e('Hover'); ?></p>
     </div>
 
     <div class="relative mt">
@@ -27,7 +27,7 @@
 
             <div class="flex flex-col justify-between  ">
                 <div class="group-[.hovered]:opacity-10">
-                    <h2 class="text-gray-800 text-2xl mb-5">What you'll see from the platform</h2>
+                    <h2 class="text-gray-800 text-2xl mb-5"><?php pll_e('Iceberg Front'); ?>What you'll see from the platform</h2>
                     <div class="flex jic">
                         <?php if( have_rows('top_items') ): while ( have_rows('top_items') ): the_row(); ?>
 
@@ -49,7 +49,7 @@
                 <span class="line-iceberg !top-[31.1%] !w-[92%] group-[.hovered]:opacity-10"></span>
 
                 <div class="mt-20 group-[.hovered]:opacity-10">
-                    <h2 class="text-gray-800 text-2xl mb-5">What the platform is doing behind the scenes</h2>
+                    <h2 class="text-gray-800 text-2xl mb-5"><?php pll_e('Iceberg Behind'); ?>What the platform is doing behind the scenes</h2>
                    
                     <div class="flex jic flex-wrap">
                         <?php if( have_rows('bottom_items') ): while ( have_rows('bottom_items') ): the_row(); ?>

@@ -3,9 +3,9 @@
     <p class="text-white">Contact us</p>
   </a> 
   <div class="flex flex-col menu-trigger pointer">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span class="block"></span>
+    <span class="block"></span>
+    <span class="block"></span>
   </div>
     
 </div>
@@ -24,7 +24,7 @@
       <div class="has-hover-items">
 				<?php
 					wp_nav_menu( array(
-						'theme_location' => 'menu-1',
+						'theme_location' => 'mobile',
 						'menu_id'        => 'side-menu',
 						'container' => 'ul',
 						'menu_class' => 'menu-nav w-max ml-0 jic list-none',

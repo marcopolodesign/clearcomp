@@ -1,4 +1,4 @@
-<div class="container grid-secondary my-<?php the_sub_field('margin');?> my-">
+<div class="container grid-secondary mx-auto my-<?php the_sub_field('margin');?> my-">
     <h3 class="uppercase text-black font-semibold">Solutions by role</h3>
 
     <div class=" mt-10 flex column-mobile gap-20 justify-between">

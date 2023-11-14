@@ -146,6 +146,17 @@ a.btn-primary {
     transform: rotate(180deg);
 }
 
+@media (min-width: 769px) {
+
+
+header.scrolled {
+    transform: translateY(-10px);
+    opacity: 0;
+    -webkit-filter: blur(4px);
+    filter: blur(4px);    
+}
+
+}
 
   /* Reusable Content */
 
@@ -287,6 +298,13 @@ div[data-barba='container'].home .faq-item::after {
     opacity: 0;
     transform: translateY(100px);
 }
+
+/* Forms fix */
+
+ .wpforms-container input.wpforms-field-medium, .wpforms-container select.wpforms-field-medium, .wpforms-container .wpforms-field-row.wpforms-field-medium {
+    max-width: 100% !important;
+ }
+
 
 
 
@@ -627,6 +645,18 @@ div[data-barba='container'].faq .relative-mobile {
  div[data-barba='container'].faq .faq-item::after {
     margin-top: 0px
  }
+
+ /* About Us mobile */
+
+ .icon-grid-container {
+    padding-left: 0px !important;
+ }
+
+ .icon-grid-container div > div:first-child {
+    padding-left: 20px;
+    padding-right: 20px;
+ }
+
 
 /* Tailwind fix */
 

@@ -251,8 +251,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     background-color: var(--mainColor);
     
     /* mix-blend-mode: difference; */
@@ -260,6 +260,7 @@
     border-radius: 50%;
     transition: width 0.2s ease, height 0.2s ease;
     pointer-events: none;
+    opacity: 0.8;
     /* transition-delay: all 0.5s !important; */
   }
   
@@ -1786,7 +1787,7 @@
     }
   
     .relative-m {
-      position: relative;
+      position: relative !important;
       top: 0 !important;
     }
   

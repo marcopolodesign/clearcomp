@@ -40,8 +40,8 @@ const runScripts = () => {
     let distanceFromTop = 0;
     
     const moveCursor = (x, y) => {
-      cursor.style.top = y + 'px';
-      cursor.style.left = x + 'px';
+      cursor.style.top = y + 20 +'px';
+      cursor.style.left = x + 20 +  'px';
     
       // Calculate the distance between cursor and top of the screen
       distanceFromTop = y - window.pageYOffset;
@@ -139,7 +139,15 @@ const runScripts = () => {
   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
     // animatePosts();
   }
-  
+
+
+  const langSwitcher = ()=> {
+    let switchers = document.querySelectorAll('.lang-switcher > *');
+    switchers.forEach(s => {
+      s.classList.add('barba-prevent');
+    })
+  }
+  langSwitcher();
 }
 
 const faqQuestions = () => {
@@ -229,12 +237,6 @@ const showInfoOnHover = (target, trigger, targetContainer) => {
     })
   })
 }
-
-
-
-
-
-
 
 
 const steps = () => {
@@ -335,7 +337,10 @@ barba.init({
             .to(preloaderCaption, {y: "-130%"},0.4)    
             .to(preLoad,{ y: "-110%", stagger: 0.05}, 0.4)
             .call (()=> {
-              if (pageName.getAttribute('data-barba-namespace') == 'home') {
+            if (
+              pageName.getAttribute('data-barba-namespace') == 'home' ||
+              pageName.getAttribute('data-barba-namespace') == 'home - español'
+            ) {
                 console.log('animating from regular')
                 animateLanding();
               }
@@ -347,25 +352,47 @@ barba.init({
     ],
     views: [ {
       namespace: 'home',
-      afterEnter() {
-        
-        const divHolder = document.querySelector('.about-cc-text')
-        const divs = document.querySelectorAll('.about-content');
-        const spans = document.querySelectorAll('.about-cc-text span.underline');
+        afterEnter() {
+          console.log('home')
+          const divHolder = document.querySelector('.about-cc-text')
+          const divs = document.querySelectorAll('.about-content');
+          const spans = document.querySelectorAll('.about-cc-text span.underline');
 
-        // Iceberg hover effect
-        const iceberg = document.querySelector('.iceberg-svg');
-        const icebergOverlay = document.querySelectorAll('.iceberg-overlay');
-        icebergParts = document.querySelectorAll('.iceberg-svg path');
+          // Iceberg hover effect
+          const iceberg = document.querySelector('.iceberg-svg');
+          const icebergOverlay = document.querySelectorAll('.iceberg-overlay');
+          icebergParts = document.querySelectorAll('.iceberg-svg path');
 
-        showInfoOnHover(divs, spans, divHolder);
-        showInfoOnHover(icebergOverlay, icebergParts, iceberg); 
-        animateIntegrations();
-        faqQuestions();
-        // animateLanding();
-        // console.log('animating from view')
-      }
-    }, {
+          showInfoOnHover(divs, spans, divHolder);
+          showInfoOnHover(icebergOverlay, icebergParts, iceberg); 
+          animateIntegrations();
+          faqQuestions();
+          // animateLanding();
+          // console.log('animating from view')
+        }
+    }, 
+    
+    {
+      namespace: 'Home',
+    afterEnter() {
+      console.log('Home')
+      const divHolder = document.querySelector('.about-cc-text')
+      const divs = document.querySelectorAll('.about-content');
+      const spans = document.querySelectorAll('.about-cc-text span.underline');
+
+      // Iceberg hover effect
+      const iceberg = document.querySelector('.iceberg-svg');
+      const icebergOverlay = document.querySelectorAll('.iceberg-overlay');
+      icebergParts = document.querySelectorAll('.iceberg-svg path');
+
+      showInfoOnHover(divs, spans, divHolder);
+      showInfoOnHover(icebergOverlay, icebergParts, iceberg); 
+      animateIntegrations();
+      faqQuestions();
+      // animateLanding();
+      // console.log('animating from view')
+    }
+},{
     namespace: 'faq', 
     afterEnter() {  
       faqQuestions();
@@ -374,7 +401,16 @@ barba.init({
   {
     namespace: 'about',
     afterEnter() {
-      faqQuestions()
+      faqQuestions();
+      changeBgColorOnEnterViewport();
+    }
+  }, 
+
+  {
+    namespace: 'Sobre Nosotros',
+    afterEnter() {
+      faqQuestions();
+      changeBgColorOnEnterViewport();
     }
   }, 
    {
@@ -384,6 +420,20 @@ barba.init({
       animateIntegrations();
     }
    },
+    {
+      namespace: 'Soluciones de IT/BI',
+      afterEnter() {
+        steps();
+        animateIntegrations();
+      }
+    },
+    {
+      namespace: 'Soluciones de Recursos Humanos',
+      afterEnter() {
+        steps();
+      }
+     },
+
    {
     namespace: 'HR Solutions',
     afterEnter() {
@@ -392,6 +442,12 @@ barba.init({
    },
    {
     namespace: 'Sales Solutions',
+    afterEnter() {
+      steps();
+    }
+   },
+   {
+    namespace: 'Soluciones de Ventas',
     afterEnter() {
       steps();
     }
@@ -545,7 +601,7 @@ animate()
 
 const animateNumbers = () => {
   const animateNumberEls = document.querySelectorAll('.animate-number');
-  const duration = 2; // in seconds
+  const duration = 5; // in seconds
 
   const animateNumber = (el) => {
     const endValue = parseInt(el.innerHTML);
@@ -582,7 +638,7 @@ animateNumbers();
 
 
 const dropHolder = document.querySelector('.menu-dropdown-container');
-const dropTrigger = document.querySelectorAll('a[href="#solutions-dropdown"]')[1];
+const dropTrigger = document.querySelector('a[href="#solutions-dropdown"]');
 let isDropOpen = !dropHolder.classList.contains('-translate-y-full');
 
 const closeMenuDropdown = () => {
@@ -606,7 +662,6 @@ const showMenuDropwdown = () => {
     }
   })
 }
-
 showMenuDropwdown();
 
 
@@ -687,7 +742,7 @@ const menuScroll = ()=> {
     } else if (currentScroll > 100 && prevScroll < currentScroll) {
       header.classList.add('scrolled');
     } else if (prevScroll - 15 > currentScroll) {
-      // header.classList.remove('scrolled');
+      header.classList.remove('scrolled');
     }
 
     prevScroll = currentScroll;
@@ -764,3 +819,41 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
   openMenu();
 
 }
+
+
+function changeBgColorOnEnterViewport() {
+  const grid = document.querySelector('.about-icon-grid'); // Parent container
+  const childDivs = grid.querySelectorAll('div'); // Child divs
+
+  // Create an Intersection Observer
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // The element is entering or leaving the viewport
+        const childDiv = entry.target;
+
+        // Check if the child div has any of the specified classes
+        if (childDiv.classList.contains('bg-main-colorr')) {
+          grid.style.backgroundColor = 'var(--mainColor)';
+        } else if (childDiv.classList.contains('bg-secondary-colorr')) {
+          grid.style.backgroundColor = 'var(--secondaryColor)';
+        } else if (childDiv.classList.contains('bg-main-darkk')) {
+          grid.style.backgroundColor = 'var(--mainDarkColor)';
+        }
+      }
+    });
+  }, {
+    root: null, // Use the viewport as the root
+    rootMargin: '0px',
+    threshold: [0, 0.5, 1] // Observe when element enters, exits, and fully intersects
+  });
+
+  // Start observing each child div
+  childDivs.forEach(childDiv => {
+    observer.observe(childDiv);
+  });
+}
+
+// Call the function to initiate the observation
+
+

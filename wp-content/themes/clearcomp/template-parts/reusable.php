@@ -40,7 +40,11 @@ if( have_rows('reusable') ): while ( have_rows('reusable') ) : the_row();
     elseif (get_row_layout() == 'closure') : 
         get_template_part('template-parts/reusable/closure');
 
-
+    elseif (get_row_layout() == 'text_fixed_and_grid'):
+        get_template_part('template-parts/reusable/text-grid');
+   
+        elseif (get_row_layout() == 'about_closure'):
+        get_template_part('template-parts/about-numbers');
     
 ?>
 

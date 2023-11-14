@@ -1,15 +1,18 @@
 
 <div class="faq-featured-extract faq-container container my-10 flex items-start column-mobile">
     <div class="w-[30%]">
-        <h2 class="mb-5 text-6xl">Frecuently asked Q's</h2>
-        <a href="/faq" class="btn btn-primary bg-main-color block text-white w-max">View All</a> 
+        <h2 class="mb-5 text-6xl"><?php pll_e('FAQ'); ?></h2>
+        <a href="/faq" class="btn btn-primary bg-main-color block text-white w-max"><?php pll_e('View All'); ?></a> 
     </div>
  
     <div class="featured-faq-container flex flex-col justify-between items-start w-[60%] mr-0 ml-auto">
     <?php  
-    if( have_rows('main_faq', 126) ): 
+
+$lang = pll_current_language();
+if ($lang == 'es') : $langID = 478; else : $langID = 6; endif;
+    if( have_rows('main_faq', $langID) ): 
         $count = 0;
-        while ( have_rows('main_faq', 126) && $count < 3 ) : 
+        while ( have_rows('main_faq', $langID) && $count < 3 ) : 
             the_row(); 
             if (get_sub_field('question')):
     ?>

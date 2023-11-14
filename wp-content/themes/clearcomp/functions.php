@@ -51,6 +51,7 @@ function clearcomp_setup() {
 		array(
 			'header' => esc_html__( 'Header', 'clearcomp' ),
 			'footer' => esc_html__( 'Footer Menu', 'clearcomp' ),
+			'mobile' => esc_html__( 'Mobile Menu', 'clearcomp' ),
 		)
 	);
 
@@ -198,3 +199,25 @@ function move_acf_metabox_to_top() {
 }
 
 add_action('acf/input/admin_head', 'move_acf_metabox_to_top');
+
+
+add_action('init', function() {
+	pll_register_string('clearcomp', 'Contact');
+	pll_register_string('clearcomp', 'Hover');
+	pll_register_string('clearcomp', 'Calculating');
+	pll_register_string('clearcomp', 'About Title');	
+	pll_register_string('clearcomp', 'About Sub Title');	
+	pll_register_string('clearcomp', 'Commited');	
+	pll_register_string('clearcomp', 'Demo');	
+	pll_register_string('clearcomp', 'About Sub Title');	
+	pll_register_string('clearcomp', 'Devs');	
+	pll_register_string('clearcomp', 'Numbers');	
+	pll_register_string('clearcomp', 'Copyright');
+	pll_register_string('clearcomp', 'Solutions');
+	pll_register_string('clearcomp', 'Technology');
+	pll_register_string('clearcomp', 'Info');
+	pll_register_string('clearcomp', 'FAQ');
+	pll_register_string('clearcomp', 'View All');
+	pll_register_string('clearcomp', 'Icerberg Front');
+	pll_register_string('clearcomp', 'Icerberg Behind');
+});

@@ -48,7 +48,7 @@
 			?>
 		</div>
 
-		<a class="text-[var(--mainColor)] border-[1px] border-[var(--mainColor)] hover:bg-[var(--mainColor)] hover:text-white smooth-t py-[10px] px-[35px] rounded-md font-medium desktop" href="#contact">Contact Us</a>
+		<a class="text-[var(--mainColor)] border-[1px] border-[var(--mainColor)] hover:bg-[var(--mainColor)] hover:text-white smooth-t py-[10px] px-[35px] rounded-md font-medium desktop" href="#contact"><?php pll_e('Contact'); ?></a>
 	</header><!-- #masthead -->
 
 	<?php get_template_part('template-parts/header-dropdown'); ?>
